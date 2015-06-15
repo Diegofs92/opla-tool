@@ -40,6 +40,14 @@ import metrics.PLAExtensibility;
 import net.miginfocom.swing.MigLayout;
 import results.Execution;
 
+import java.util.List;
+import org.junit.Test;
+import arquitetura.builders.ArchitectureBuilder;
+import arquitetura.representation.Architecture;
+import arquitetura.representation.Concern;
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  *
  * @author elf
@@ -58,6 +66,9 @@ public class main extends javax.swing.JFrame {
   private JTextArea textLogsArea = new javax.swing.JTextArea();
   Locale locale = Locale.US;
   ResourceBundle rb = ResourceBundle.getBundle("i18n", locale);
+  
+  Map<String,List<Concern>> archConcern = new HashMap<String,List<Concern>>();
+  Map<String,List<Concern>> archConcernPriority = new HashMap<String,List<Concern>>();
 
   /**
    * Creates new form main
@@ -110,6 +121,7 @@ public class main extends javax.swing.JFrame {
 
     activeFieldsAndChecks();
     guiservices.hidePanelPatternScopeByDefault(panelPatternScope);
+    
   }
 
   private void activeFieldsAndChecks() {
@@ -356,12 +368,27 @@ public class main extends javax.swing.JFrame {
         fieldArchitectureInput = new javax.swing.JTextArea();
         btnCleanListArchs1 = new javax.swing.JButton();
         btnInput1 = new javax.swing.JButton();
+        PrioritizeFeatures = new javax.swing.JButton();
         jPanel8 = new javax.swing.JPanel();
         fieldOutput = new javax.swing.JTextField();
         btnOutput = new javax.swing.JButton();
         btnRun = new javax.swing.JButton();
         jLabel19 = new javax.swing.JLabel();
         executionDescription = new javax.swing.JTextField();
+        jPanel12 = new javax.swing.JPanel();
+        jScrollPane8 = new javax.swing.JScrollPane();
+        ArchitectureConcerns = new javax.swing.JTable();
+        jScrollPane9 = new javax.swing.JScrollPane();
+        PrioritizedConcerns = new javax.swing.JTable();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        GeneratePrioritizedList = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
+        jScrollPane10 = new javax.swing.JScrollPane();
+        Architectures = new javax.swing.JTable();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         checkMediator = new javax.swing.JCheckBox();
@@ -404,14 +431,15 @@ public class main extends javax.swing.JFrame {
         btnGenerateEdChart = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jScrollPane6 = new javax.swing.JScrollPane();
-
+        textLogsArea = new javax.swing.JTextArea();
         jLabel12 = new javax.swing.JLabel();
         progressBar = new javax.swing.JProgressBar();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("OPLA-Tool 0.0.1");
 
-        //jTabbedPane1.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        jTabbedPane1.setMinimumSize(new java.awt.Dimension(51, 64));
+        jTabbedPane1.setPreferredSize(new java.awt.Dimension(376, 288));
         jTabbedPane1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTabbedPane1MouseClicked(evt);
@@ -425,7 +453,7 @@ public class main extends javax.swing.JFrame {
             }
         });
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Profiles Configuration", 0, 0, new java.awt.Font("Verdana", 1, 14), java.awt.Color.magenta)); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Profiles Configuration", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 14), java.awt.Color.magenta)); // NOI18N
 
         checkSmarty.setText("SMarty");
         checkSmarty.addActionListener(new java.awt.event.ActionListener() {
@@ -573,10 +601,10 @@ public class main extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(fieldRelationshipsProfile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnRelationshipProfile))
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Template Configuration", 0, 0, new java.awt.Font("Verdana", 1, 14), java.awt.Color.magenta)); // NOI18N
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Template Configuration", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 14), java.awt.Color.magenta)); // NOI18N
 
         jLabel7.setFont(new java.awt.Font("Lucida Grande", 0, 10)); // NOI18N
         jLabel7.setText("about templates");
@@ -620,10 +648,10 @@ public class main extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(fieldTemplate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnTemplate))
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Manipulation Directory", 0, 0, new java.awt.Font("Verdana", 1, 14), java.awt.Color.magenta)); // NOI18N
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Manipulation Directory", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 14), java.awt.Color.magenta)); // NOI18N
 
         jLabel14.setFont(new java.awt.Font("Lucida Grande", 0, 10)); // NOI18N
         jLabel14.setText("about manipulation directory");
@@ -680,7 +708,7 @@ public class main extends javax.swing.JFrame {
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton1)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(390, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         ApplicationConfsLayout.setVerticalGroup(
             ApplicationConfsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -698,9 +726,9 @@ public class main extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("General Configurations", ApplicationConfs);
 
-        algorithms.setName("algorithms");
+        algorithms.setName("algorithms"); // NOI18N
 
-        panelExperimentSettings.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Settings", 0, 0, new java.awt.Font("Verdana", 1, 14), java.awt.Color.magenta)); // NOI18N
+        panelExperimentSettings.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Settings", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 14), java.awt.Color.magenta)); // NOI18N
 
         jLabel3.setText("Number of Runs:");
 
@@ -847,7 +875,7 @@ public class main extends javax.swing.JFrame {
 
         labelAlgorithms.setText("Select algorithm which want to use:");
 
-        panelMetrics.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Objective Functions", 0, 0, new java.awt.Font("Verdana", 1, 14), java.awt.Color.magenta)); // NOI18N
+        panelMetrics.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Objective Functions", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 14), java.awt.Color.magenta)); // NOI18N
 
         checkConventional.setText("Conventional");
         checkConventional.addActionListener(new java.awt.event.ActionListener() {
@@ -906,7 +934,7 @@ public class main extends javax.swing.JFrame {
                 .addContainerGap(17, Short.MAX_VALUE))
         );
 
-        panelOperatorsMutation.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Select Mutation Operators wich want to use", 0, 0, new java.awt.Font("Verdana", 1, 14), java.awt.Color.magenta)); // NOI18N
+        panelOperatorsMutation.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Select Mutation Operators wich want to use", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 14), java.awt.Color.magenta)); // NOI18N
 
         checkFeatureMutation.setText("Feature-driven Mutation");
         checkFeatureMutation.addActionListener(new java.awt.event.ActionListener() {
@@ -966,7 +994,7 @@ public class main extends javax.swing.JFrame {
                             .addComponent(checkMoveOperation)
                             .addComponent(checkManagerClass)
                             .addComponent(checkMoveAttribute))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(89, Short.MAX_VALUE))
         );
         panelOperatorsMutationLayout.setVerticalGroup(
             panelOperatorsMutationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1045,7 +1073,7 @@ public class main extends javax.swing.JFrame {
                         .addGap(136, 136, 136)
                         .addGroup(panelExperimentSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(panelMetrics, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(panelOperatorsMutation, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(panelOperatorsMutation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelExperimentSettingsLayout.setVerticalGroup(
@@ -1094,7 +1122,7 @@ public class main extends javax.swing.JFrame {
                 .addGap(113, 113, 113))
         );
 
-        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Input Architecture(s)", 0, 0, new java.awt.Font("Verdana", 1, 14), java.awt.Color.magenta)); // NOI18N
+        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Input Architecture(s)", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 14), java.awt.Color.magenta)); // NOI18N
 
         jLabel11.setText("A list of paths separated by comma");
 
@@ -1116,6 +1144,18 @@ public class main extends javax.swing.JFrame {
             }
         });
 
+        PrioritizeFeatures.setText("Feature Prioritization");
+        PrioritizeFeatures.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                PrioritizeFeaturesMouseClicked(evt);
+            }
+        });
+        PrioritizeFeatures.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PrioritizeFeaturesActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
@@ -1124,6 +1164,8 @@ public class main extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addComponent(PrioritizeFeatures)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnInput1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnCleanListArchs1))
@@ -1142,11 +1184,12 @@ public class main extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCleanListArchs1)
-                    .addComponent(btnInput1))
+                    .addComponent(btnInput1)
+                    .addComponent(PrioritizeFeatures))
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
-        jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Select where you want to save outputs", 0, 0, new java.awt.Font("Verdana", 1, 14), java.awt.Color.magenta)); // NOI18N
+        jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Select where you want to save outputs", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 14), java.awt.Color.magenta)); // NOI18N
 
         fieldOutput.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1209,7 +1252,7 @@ public class main extends javax.swing.JFrame {
                     .addComponent(panelExperimentSettings, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(algorithmsLayout.createSequentialGroup()
                         .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(algorithmsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, algorithmsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 413, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1241,14 +1284,184 @@ public class main extends javax.swing.JFrame {
                             .addGroup(algorithmsLayout.createSequentialGroup()
                                 .addGap(34, 34, 34)
                                 .addComponent(btnRun, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Execution Configurations", algorithms);
 
-        jPanel4.setName("DesignPatterns");
+        ArchitectureConcerns.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
 
-        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Design Pattern Selection Strategy", 0, 0, new java.awt.Font("Verdana", 1, 14), new java.awt.Color(255, 0, 255))); // NOI18N
+            },
+            new String [] {
+                " Architecture Features"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane8.setViewportView(ArchitectureConcerns);
+
+        PrioritizedConcerns.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                " Prioritized Features"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane9.setViewportView(PrioritizedConcerns);
+
+        jButton3.setText(">>>>>");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jButton4.setText("UP");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        jButton5.setText("DOWN");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
+        GeneratePrioritizedList.setText("Generate  Prioritized Features List");
+        GeneratePrioritizedList.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                GeneratePrioritizedListMouseClicked(evt);
+            }
+        });
+        GeneratePrioritizedList.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GeneratePrioritizedListActionPerformed(evt);
+            }
+        });
+
+        jButton7.setText("<<<<<");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+
+        Architectures.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Architectures"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        Architectures.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ArchitecturesMouseClicked(evt);
+            }
+        });
+        jScrollPane10.setViewportView(Architectures);
+
+        jLabel20.setText("Choose Architectures");
+
+        javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
+        jPanel12.setLayout(jPanel12Layout);
+        jPanel12Layout.setHorizontalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel12Layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel12Layout.createSequentialGroup()
+                                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel12Layout.createSequentialGroup()
+                                        .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(jPanel12Layout.createSequentialGroup()
+                                                .addGap(248, 248, 248)
+                                                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(jButton3)
+                                                    .addComponent(jButton7)))
+                                            .addGroup(jPanel12Layout.createSequentialGroup()
+                                                .addGap(219, 219, 219)
+                                                .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGap(15, 15, 15)
+                                        .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(jPanel12Layout.createSequentialGroup()
+                        .addGap(204, 204, 204)
+                        .addComponent(GeneratePrioritizedList)))
+                .addContainerGap(190, Short.MAX_VALUE))
+        );
+        jPanel12Layout.setVerticalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel12Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton3)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton7)
+                        .addGap(164, 164, 164))
+                    .addGroup(jPanel12Layout.createSequentialGroup()
+                        .addGap(311, 311, 311)
+                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel12Layout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel12Layout.createSequentialGroup()
+                                .addComponent(jLabel20)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(34, 34, 34)
+                                .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(GeneratePrioritizedList, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39))
+        );
+
+        jTabbedPane1.addTab("Feature Prioritization", jPanel12);
+
+        jPanel4.setName("DesignPatterns"); // NOI18N
+
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Design Pattern Selection Strategy", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 14), new java.awt.Color(255, 0, 255))); // NOI18N
 
         checkMediator.setText("Mediator");
         checkMediator.addActionListener(new java.awt.event.ActionListener() {
@@ -1295,7 +1508,7 @@ public class main extends javax.swing.JFrame {
                 .addContainerGap(21, Short.MAX_VALUE))
         );
 
-        panelPatternScope.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Scope Selection Strategy", 0, 0, new java.awt.Font("Verdana", 1, 14), new java.awt.Color(255, 0, 255))); // NOI18N
+        panelPatternScope.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Scope Selection Strategy", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 14), new java.awt.Color(255, 0, 255))); // NOI18N
 
         buttonGroup1.add(radioRandomStrategy);
         radioRandomStrategy.setSelected(true);
@@ -1344,7 +1557,7 @@ public class main extends javax.swing.JFrame {
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(panelPatternScope, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(258, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1353,7 +1566,7 @@ public class main extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(panelPatternScope, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(481, Short.MAX_VALUE))
+                .addContainerGap(533, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Design Patterns", jPanel4);
@@ -1494,7 +1707,7 @@ public class main extends javax.swing.JFrame {
                 .addGroup(panelSolutionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel17)
                     .addComponent(comboSolutions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 10, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         tableObjectives.setModel(new javax.swing.table.DefaultTableModel(
@@ -1635,7 +1848,7 @@ public class main extends javax.swing.JFrame {
                 .addComponent(panelSolutions, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(1, 1, 1)
                 .addComponent(panelObjectives, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(panelShowMetrics, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26))
         );
@@ -1788,7 +2001,7 @@ public class main extends javax.swing.JFrame {
                         .addComponent(panelFunctionExecutionsSelecteds, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 11, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1799,7 +2012,7 @@ public class main extends javax.swing.JFrame {
                 .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(301, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addComponent(panelFunctionExecutionsSelecteds, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
@@ -1820,7 +2033,7 @@ public class main extends javax.swing.JFrame {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 957, Short.MAX_VALUE)
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 869, Short.MAX_VALUE)
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(jLabel12)
                         .addGap(0, 0, Short.MAX_VALUE))
@@ -1836,7 +2049,7 @@ public class main extends javax.swing.JFrame {
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(progressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(199, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Logs", jPanel6);
@@ -1845,16 +2058,17 @@ public class main extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 990, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 894, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1))
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 723, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPane1.getAccessibleContext().setAccessibleName("Paths Confs");
@@ -2692,6 +2906,164 @@ public class main extends javax.swing.JFrame {
     }
   }//GEN-LAST:event_hypervolumeNormalizedActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+
+        int linhaSelecionada = ArchitectureConcerns.getSelectedRow();
+        //int colunaSelecionada = jTable1.getSelectedColumn();
+
+        if((linhaSelecionada != -1) && !(ArchitectureConcerns.getValueAt(linhaSelecionada,0).toString().equals(""))){
+
+            DefaultTableModel tabela2 = (DefaultTableModel) PrioritizedConcerns.getModel();
+            tabela2.addRow(new Object[]{
+                ArchitectureConcerns.getValueAt(linhaSelecionada,0) // (linha, coluna)
+            });
+
+            DefaultTableModel tabela1 = (DefaultTableModel) ArchitectureConcerns.getModel();
+
+            //tabela1.removeRow(linhaSelecionada);   // apaga linha da tabela
+
+            tabela1.removeRow(linhaSelecionada); // remove linha
+        }
+
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        int linhaSelecionada = PrioritizedConcerns.getSelectedRow();
+
+        Object aux;
+
+        DefaultTableModel tabela2 = (DefaultTableModel) PrioritizedConcerns.getModel();
+        if((linhaSelecionada != -1) && (linhaSelecionada != 0)){
+            aux = tabela2.getValueAt(linhaSelecionada, 0);
+            tabela2.setValueAt(tabela2.getValueAt(linhaSelecionada - 1, 0),linhaSelecionada,0);
+            tabela2.setValueAt(aux,linhaSelecionada - 1,0);
+
+            PrioritizedConcerns.addRowSelectionInterval(linhaSelecionada - 1,linhaSelecionada - 1);
+
+        }
+
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        int linhaSelecionada = PrioritizedConcerns.getSelectedRow();
+
+        Object aux;
+
+        DefaultTableModel tabela2 = (DefaultTableModel) PrioritizedConcerns.getModel();
+        if((linhaSelecionada != -1) && (linhaSelecionada != PrioritizedConcerns.getRowCount() - 1)){
+            aux = tabela2.getValueAt(linhaSelecionada, 0);
+            tabela2.setValueAt(tabela2.getValueAt(linhaSelecionada + 1, 0),linhaSelecionada,0);
+            tabela2.setValueAt(aux,linhaSelecionada + 1,0);
+
+            PrioritizedConcerns.addRowSelectionInterval(linhaSelecionada + 1,linhaSelecionada + 1);
+
+        }
+
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void GeneratePrioritizedListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GeneratePrioritizedListActionPerformed
+        // TODO add your handling code here:
+
+        
+        List<Concern> listPriori = new ArrayList<Concern>();
+
+        for(int i = 0; i< PrioritizedConcerns.getRowCount();i++){
+              listPriori.add((Concern)PrioritizedConcerns.getValueAt(i, 0));
+            }
+            Architecture.savePrioritizedConcerns(listPriori);
+            jLabel21.setText("Prioritized Concern List Created");
+            //this.jTabbedPane1.setSelectedIndex(1);
+        
+        
+
+    }//GEN-LAST:event_GeneratePrioritizedListActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        int linhaSelecionada = PrioritizedConcerns.getSelectedRow();
+
+        if((linhaSelecionada != -1) && !(PrioritizedConcerns.getValueAt(linhaSelecionada,0).toString().equals(""))){
+            DefaultTableModel tabela1 = (DefaultTableModel) ArchitectureConcerns.getModel();
+            tabela1.addRow(new Object[]{
+                PrioritizedConcerns.getValueAt(linhaSelecionada,0) // (linha, coluna)
+            });
+            DefaultTableModel tabela2 = (DefaultTableModel) PrioritizedConcerns.getModel();
+            tabela2.removeRow(linhaSelecionada);
+        }
+
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void PrioritizeFeaturesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PrioritizeFeaturesActionPerformed
+        // TODO add your handling code here:
+        Validators.validateEntries(fieldArchitectureInput.getText());
+        String archs[] = fieldArchitectureInput.getText().trim().split(",");
+        DefaultTableModel Archs = (DefaultTableModel) Architectures.getModel();
+        Archs.setNumRows(0);
+        for (int i = 0; i < archs.length; i++){
+            ArchitectureBuilder builder = new ArchitectureBuilder();
+            try{
+                
+            
+            Architecture arch = builder.create(archs[i]);
+   
+            List<Concern>allConcerns = arch.getAllConcerns();
+            List<Concern>PrioritizedConcernsList = arch.getPrioritizedConcerns();
+            String archname = arch.getName(); 
+            
+            
+            Archs.addRow(new Object[]{
+                                    archname 
+                                    });
+            
+            this.archConcern.put(archname, allConcerns);
+            this.archConcernPriority.put(archname,PrioritizedConcernsList);
+            }
+            catch(Exception e){
+                
+            }
+        }
+        
+        //this.jTabbedPane1.setSelectedIndex(2);
+        
+    }//GEN-LAST:event_PrioritizeFeaturesActionPerformed
+
+    private void ArchitecturesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ArchitecturesMouseClicked
+        // TODO add your handling code here:
+        int linhaSelecionada = this.Architectures.getSelectedRow();
+        String key = this.Architectures.getValueAt(linhaSelecionada,0).toString();
+        List<Concern> Concerns = this.archConcern.get(key);
+        List<Concern> PriorityConcerns = this.archConcernPriority.get(key);
+        DefaultTableModel ArchConcerns = (DefaultTableModel) ArchitectureConcerns.getModel();
+        DefaultTableModel PriorityFeaturesTable = (DefaultTableModel) PrioritizedConcerns.getModel();
+        ArchConcerns.setNumRows(0);
+        PriorityFeaturesTable.setNumRows(0);
+        for (Concern c:Concerns){
+            ArchConcerns.addRow(new Object[]{
+                                    c 
+                                    });
+        }
+        for (Concern c:PriorityConcerns){
+            PriorityFeaturesTable.addRow(new Object[]{
+                                    c 
+                                    });
+                
+            
+        }
+        
+    }//GEN-LAST:event_ArchitecturesMouseClicked
+
+    private void PrioritizeFeaturesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PrioritizeFeaturesMouseClicked
+        // TODO add your handling code here:
+        this.jTabbedPane1.setSelectedIndex(2);
+    }//GEN-LAST:event_PrioritizeFeaturesMouseClicked
+
+    private void GeneratePrioritizedListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GeneratePrioritizedListMouseClicked
+        // TODO add your handling code here:
+        this.jTabbedPane1.setSelectedIndex(1);
+    }//GEN-LAST:event_GeneratePrioritizedListMouseClicked
+
   private String fileChooser(JTextField fieldToSet, String allowExtension) throws HeadlessException {
     JFileChooser c = new JFileChooser();
     int rVal = c.showOpenDialog(this);
@@ -2718,6 +3090,11 @@ public class main extends javax.swing.JFrame {
    */
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel ApplicationConfs;
+    private javax.swing.JTable ArchitectureConcerns;
+    private javax.swing.JTable Architectures;
+    private javax.swing.JButton GeneratePrioritizedList;
+    private javax.swing.JButton PrioritizeFeatures;
+    private javax.swing.JTable PrioritizedConcerns;
     private javax.swing.JPanel algorithms;
     private javax.swing.JButton bestSolutions;
     private javax.swing.JButton btnCleanListArchs1;
@@ -2777,6 +3154,10 @@ public class main extends javax.swing.JFrame {
     private javax.swing.JCheckBox hypervolumeNormalized;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -2789,6 +3170,8 @@ public class main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -2799,6 +3182,7 @@ public class main extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
+    private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -2808,12 +3192,15 @@ public class main extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JScrollPane jScrollPane8;
+    private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel labelAlgorithms;
     private javax.swing.JLabel labelArchivePAES;
@@ -2838,7 +3225,7 @@ public class main extends javax.swing.JFrame {
     private javax.swing.JTable tableExp2;
     private javax.swing.JTable tableMetrics;
     private javax.swing.JTable tableObjectives;
-
+    private javax.swing.JTextArea textLogsArea;
     // End of variables declaration//GEN-END:variables
 
   private void hidePanelMutationOperatorsByDefault() {
