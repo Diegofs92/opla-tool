@@ -388,7 +388,6 @@ public class main extends javax.swing.JFrame {
         jScrollPane10 = new javax.swing.JScrollPane();
         Architectures = new javax.swing.JTable();
         jLabel20 = new javax.swing.JLabel();
-        jLabel21 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         checkMediator = new javax.swing.JCheckBox();
@@ -1405,16 +1404,11 @@ public class main extends javax.swing.JFrame {
                                     .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanel12Layout.createSequentialGroup()
+                                        .addGap(248, 248, 248)
                                         .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(jPanel12Layout.createSequentialGroup()
-                                                .addGap(248, 248, 248)
-                                                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jButton3)
-                                                    .addComponent(jButton7)))
-                                            .addGroup(jPanel12Layout.createSequentialGroup()
-                                                .addGap(219, 219, 219)
-                                                .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addGap(15, 15, 15)
+                                            .addComponent(jButton3)
+                                            .addComponent(jButton7))
+                                        .addGap(51, 51, 51)
                                         .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1423,7 +1417,7 @@ public class main extends javax.swing.JFrame {
                     .addGroup(jPanel12Layout.createSequentialGroup()
                         .addGap(204, 204, 204)
                         .addComponent(GeneratePrioritizedList)))
-                .addContainerGap(190, Short.MAX_VALUE))
+                .addContainerGap(187, Short.MAX_VALUE))
         );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1450,9 +1444,7 @@ public class main extends javax.swing.JFrame {
                                 .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(34, 34, 34)
                                 .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                 .addComponent(GeneratePrioritizedList, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(39, 39, 39))
         );
@@ -2964,6 +2956,11 @@ public class main extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButton5ActionPerformed
 
+    
+    public void Goto(int i){
+        this.jTabbedPane1.setSelectedIndex(i);
+    }
+    
     private void GeneratePrioritizedListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GeneratePrioritizedListActionPerformed
         // TODO add your handling code here:
 
@@ -2974,7 +2971,13 @@ public class main extends javax.swing.JFrame {
               listPriori.add((Concern)PrioritizedConcerns.getValueAt(i, 0));
             }
             Architecture.savePrioritizedConcerns(listPriori);
-            jLabel21.setText("Prioritized Concern List Created");
+            
+            MessageFrame mf = new MessageFrame(this);
+            mf.setVisible(true);
+            this.setEnabled(false);
+            
+            //jLabel21.setText("Prioritized Concern List Created");
+            //JOptionPane
             //this.jTabbedPane1.setSelectedIndex(1);
         
         
@@ -3064,7 +3067,7 @@ public class main extends javax.swing.JFrame {
 
     private void GeneratePrioritizedListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GeneratePrioritizedListMouseClicked
         // TODO add your handling code here:
-        this.jTabbedPane1.setSelectedIndex(1);
+        //this.jTabbedPane1.setSelectedIndex(1);
     }//GEN-LAST:event_GeneratePrioritizedListMouseClicked
 
   private String fileChooser(JTextField fieldToSet, String allowExtension) throws HeadlessException {
@@ -3174,7 +3177,6 @@ public class main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -3228,7 +3230,7 @@ public class main extends javax.swing.JFrame {
     private javax.swing.JTable tableExp2;
     private javax.swing.JTable tableMetrics;
     private javax.swing.JTable tableObjectives;
-    
+    private javax.swing.JTextArea textLogsArea;
     // End of variables declaration//GEN-END:variables
 
   private void hidePanelMutationOperatorsByDefault() {

@@ -1286,20 +1286,12 @@
                                           <Component id="jScrollPane8" min="-2" pref="197" max="-2" attributes="0"/>
                                           <Component id="jScrollPane10" min="-2" pref="311" max="-2" attributes="0"/>
                                           <Group type="102" alignment="0" attributes="0">
+                                              <EmptySpace min="-2" pref="248" max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Group type="102" attributes="0">
-                                                      <EmptySpace min="-2" pref="248" max="-2" attributes="0"/>
-                                                      <Group type="103" groupAlignment="0" attributes="0">
-                                                          <Component id="jButton3" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                          <Component id="jButton7" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                      </Group>
-                                                  </Group>
-                                                  <Group type="102" alignment="0" attributes="0">
-                                                      <EmptySpace min="-2" pref="219" max="-2" attributes="0"/>
-                                                      <Component id="jLabel21" min="-2" pref="117" max="-2" attributes="0"/>
-                                                  </Group>
+                                                  <Component id="jButton3" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="jButton7" alignment="0" min="-2" max="-2" attributes="0"/>
                                               </Group>
-                                              <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
                                               <Component id="jScrollPane9" min="-2" pref="197" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
@@ -1316,7 +1308,7 @@
                               <Component id="GeneratePrioritizedList" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="190" max="32767" attributes="0"/>
+                      <EmptySpace pref="187" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -1351,9 +1343,7 @@
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="jLabel21" min="-2" pref="20" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace pref="20" max="32767" attributes="0"/>
                       <Component id="GeneratePrioritizedList" min="-2" pref="69" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                   </Group>
@@ -1499,8 +1489,6 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Choose Architectures"/>
               </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabel21">
             </Component>
           </SubComponents>
         </Container>
