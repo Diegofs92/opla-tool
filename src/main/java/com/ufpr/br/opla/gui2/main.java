@@ -3230,7 +3230,7 @@ public class main extends javax.swing.JFrame {
     private javax.swing.JTable tableExp2;
     private javax.swing.JTable tableMetrics;
     private javax.swing.JTable tableObjectives;
-    private javax.swing.JTextArea textLogsArea;
+    
     // End of variables declaration//GEN-END:variables
 
   private void hidePanelMutationOperatorsByDefault() {
