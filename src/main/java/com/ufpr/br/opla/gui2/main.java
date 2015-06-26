@@ -41,7 +41,7 @@ import net.miginfocom.swing.MigLayout;
 import results.Execution;
 
 import java.util.List;
-import org.junit.Test;
+//import org.junit.Test;
 import arquitetura.builders.ArchitectureBuilder;
 import arquitetura.representation.Architecture;
 import arquitetura.representation.Concern;
@@ -66,6 +66,9 @@ public class main extends javax.swing.JFrame {
   private JTextArea textLogsArea = new javax.swing.JTextArea();
   Locale locale = Locale.US;
   ResourceBundle rb = ResourceBundle.getBundle("i18n", locale);
+  
+  public int numArquiteturaSelecionada;
+  public List<Architecture> Instances = new ArrayList<Architecture>();
   
   Map<String,List<Concern>> archConcern = new HashMap<String,List<Concern>>();
   Map<String,List<Concern>> archConcernPriority = new HashMap<String,List<Concern>>();
@@ -2966,11 +2969,11 @@ public class main extends javax.swing.JFrame {
 
         
         List<Concern> listPriori = new ArrayList<Concern>();
-
+        
         for(int i = 0; i< PrioritizedConcerns.getRowCount();i++){
               listPriori.add((Concern)PrioritizedConcerns.getValueAt(i, 0));
             }
-            Architecture.savePrioritizedConcerns(listPriori);
+            Instances.get(numArquiteturaSelecionada).savePrioritizedConcerns(listPriori);
             
             MessageFrame mf = new MessageFrame(this);
             mf.setVisible(true);
@@ -3008,12 +3011,12 @@ public class main extends javax.swing.JFrame {
             ArchitectureBuilder builder = new ArchitectureBuilder();
             try{
                 
-            
-            Architecture arch = builder.create(archs[i]);
+           
+            Instances.add(builder.create(archs[i]));
    
-            List<Concern>allConcerns = arch.getAllConcerns();
-            List<Concern>PrioritizedConcernsList = arch.getPrioritizedConcerns();
-            String archname = arch.getName(); 
+            List<Concern>allConcerns = Instances.get(i).getAllConcerns();
+            List<Concern>PrioritizedConcernsList = Instances.get(i).getPrioritizedConcerns();
+            String archname = Instances.get(i).getName();
             
             
             Archs.addRow(new Object[]{
@@ -3038,6 +3041,7 @@ public class main extends javax.swing.JFrame {
     private void ArchitecturesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ArchitecturesMouseClicked
         // TODO add your handling code here:
         int linhaSelecionada = this.Architectures.getSelectedRow();
+        numArquiteturaSelecionada = linhaSelecionada;
         String key = this.Architectures.getValueAt(linhaSelecionada,0).toString();
         List<Concern> Concerns = this.archConcern.get(key);
         List<Concern> PriorityConcerns = this.archConcernPriority.get(key);
